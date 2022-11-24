@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const Navbar = () => {
    const menuItems = (
@@ -15,8 +17,17 @@ const Navbar = () => {
        </li>
      </>
    );
+
+    const { user, logout } = useContext(AuthContext);
+
+    const handleLogOut = () => {
+     logout().then(() => {
+       toast.success("User Logged Out");
+     });
+    } 
+
     return (
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-blue-200">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -39,18 +50,40 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-                {menuItems}
+              {menuItems}
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost upper-case text-lg md:text-2xl font-semibold">Recycle Phone</Link>
+          <Link
+            to="/"
+            className="btn btn-ghost upper-case text-lg md:text-2xl font-semibold"
+          >
+            Recycle Phone
+          </Link>
         </div>
         <div className="navbar-end hidden lg:flex">
-          <ul className="menu menu-horizontal p-0">
-            {menuItems}
-          </ul>
+          <ul className="menu menu-horizontal p-0">{menuItems}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login" className="btn w-24 btn-primary text-xl">Login</Link>
+          {user?.uid ? (
+            <h2
+              onClick={handleLogOut}
+              className="btn btn-outline btn-md mx-2 cursor-pointer"
+            >
+              Sign Out
+            </h2>
+          ) : (
+            <>
+              <Link to="/login" className="btn btn-primary btn-md mx-2">
+                Sign in
+              </Link>
+              <Link
+                to="/signup"
+                className="btn btn-outline btn-primary btn-md mx-2"
+              >
+                Sign up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     );

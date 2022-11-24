@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
-  const { ProviderLogin, login } = useContext(AuthContext);
+  const { signInWithGoogle, login } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,7 +33,7 @@ const Login = () => {
   };
 
   const handleGoogleSignIn = () => {
-    ProviderLogin(googleProvider)
+    signInWithGoogle(googleProvider)
       .then((result) => {
         if (result.user.uid) {
           toast.success("Login Successful");
