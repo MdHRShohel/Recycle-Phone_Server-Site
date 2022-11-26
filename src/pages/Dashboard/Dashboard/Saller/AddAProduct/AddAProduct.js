@@ -22,10 +22,6 @@ const AddAProduct = () => {
         const image = form.image.files[0];
         const salerName = form.salerName.value;
 
-
-
-
-
         // console.log(product);
 
 
@@ -43,17 +39,17 @@ const AddAProduct = () => {
                 if (imageData.success) {
 
                     const product = {
-                        salerName,
-                        category,
-                        originalPrice,
-                        resalePrice,
-                        location,
-                        used,
-                        photo: imageData.data.url,
-                        name,
-                        email: user?.email
-                    }
-                    // console.log(userInfo)
+                      salerName,
+                      category,
+                      originalPrice,
+                      resalePrice,
+                      location,
+                      used,
+                      photo: imageData.data.url,
+                      name,
+                      email: user?.email,
+                    };
+                     //console.log(userInfo);
                     // save doctor information to the database
 
                     fetch('http://localhost:5000/add-a-product', {
