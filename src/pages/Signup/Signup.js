@@ -100,6 +100,20 @@ const Signup = () => {
                 placeholder="password"
                 className="input input-bordered"
               />
+              <div className="form-control">
+                
+              </div>
+              <div className="my-6 form-control">
+                <label className="label cursor-pointer">
+                  <span className="label-text text-lg font-semibold">I want to be a Seller</span>
+                  <input
+                    type="radio"
+                    name="radio-10"
+                    className="radio checked:bg-blue-500"
+                  />
+                </label>
+              </div>
+
               <label className="label">
                 <Link to="/login" className="label-text-alt link link-hover">
                   Already Have an Account? <strong>Log In</strong>
@@ -107,7 +121,7 @@ const Signup = () => {
               </label>
             </div>
             <p className="text-sm text-red-400 font-medium">{error}</p>
-            <div className="form-control mt-6">
+            <div className="form-control ">
               <button className="btn btn-primary">Signup</button>
             </div>
           </form>
