@@ -1,47 +1,37 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AuthContext } from "../../Context/AuthProvider";
 
 
-const BookModal = ({ mobileData,setMobiledata }) => {
+const BookModal = ({ mobileData, setMobileData }) => {
   const { user } = useContext(AuthContext);
-   //console.log(mobileData);
-   const {
-     register,
-     handleSubmit,
-     formState: { errors },
-   } = useForm();
+  //console.log(mobileData);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-   const onSubmit = (data) => {
-        console.log(data);
-    //  const modalData = {
-    //    address: data.address,
-    //    carName: data.carName,
-    //    carPrice: data.carPrice,
-    //    email: data.email,
-    //    name: data.name,
-    //    number: data.number,
-    //    bookedCarId: _id,
-    //    picture: picture,
-    //    bookedDate: date,
-    //  };
-    //  fetch("http://localhost:5000/bookings", {
-    //    method: "POST",
-    //    headers: {
-    //      "content-type": "application/json",
-    //    },
-    //    body: JSON.stringify(modalData),
-    //  })
-    //    .then((res) => res.json())
-    //    .then((data) => {
-    //      if (data.acknowledged) {
-    //        toast.success("Your booking successfully!");
-    //        setMobiledata(null);
-    //      }
-    //    });
-   };
+  const onSubmit = (data) => {
+   // console.log(data);
+   
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Your booking successfully!");
+          setMobileData(null);
+        }
+      });
+  };
 
-  
   return (
     <div>
       {/* Put this part before </body> tag */}
@@ -124,7 +114,7 @@ const BookModal = ({ mobileData,setMobiledata }) => {
                 {...register("address", { required: true })}
               />
             </div>
-           
+
             {errors.exampleRequired && <span>This field is required</span>}
             <input
               className="btn btn-primary w-full my-5 text-white max-w-xl"

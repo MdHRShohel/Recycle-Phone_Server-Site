@@ -50,10 +50,12 @@ const [mobileData, setMobileData] = useState("");
           </div>
         ))}
       </div>
-        <BookModal 
-        mobileData={mobileData}
-        setMobileData={setMobileData}
+      {mobileData && (
+        <BookModal
+          mobileData={mobileData}
+          setMobileData={setMobileData}
         ></BookModal>
+      )}
     </div>
   );
 };
