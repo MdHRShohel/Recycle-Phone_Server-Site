@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import BookModal from "./BookModal";
 
 const AllProducts = () => {
-   const products = useLoaderData();
-    //console.log(products);
+  const products = useLoaderData();
+const [mobileData, setMobileData] = useState("");
+
   return (
     <div>
       <h1 className=" my-3 text-center text-4xl font-bold">
@@ -38,12 +40,20 @@ const AllProducts = () => {
             <p className="text-center font-bold">
               Seller Name : {product.salerName}
             </p>
-            <button className="my-4 text-2xl font-semibold mx-auto w-full btn btn-outline">
+            <label
+              onClick={() => setMobileData(product)}
+              htmlFor="book-modal"
+              className="my-4 text-2xl font-semibold mx-auto w-full btn btn-outline"
+            >
               Book Now
-            </button>
+            </label>
           </div>
         ))}
       </div>
+        <BookModal 
+        mobileData={mobileData}
+        setMobileData={setMobileData}
+        ></BookModal>
     </div>
   );
 };
