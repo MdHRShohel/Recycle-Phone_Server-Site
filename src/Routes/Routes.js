@@ -1,8 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
+import DashboardLayout from '../Layout/DashboardLayout';
 import Main from '../Layout/Main';
 import AllProducts from '../pages/AllProducts/AllProducts';
 import Blogs from '../pages/Blogs/Blogs';
-import Dashboard from '../pages/Dashboard/Dashboard';
+import AllBuyers from '../pages/Dashboard/Dashboard/AllBuyers/AllBuyers';
+import AllSellers from '../pages/Dashboard/Dashboard/AllSallers/AllSellers';
+import MyOrders from '../pages/Dashboard/Dashboard/Buyer/MyOrders/MyOrders';
+import Dashboard from '../pages/Dashboard/Dashboard/Dashboard/Dashboard';
+import AddAProduct from '../pages/Dashboard/Dashboard/Saller/AddAProduct/AddAProduct';
+import MyBuyers from '../pages/Dashboard/Dashboard/Saller/MyBuyers/MyBuyers';
+import MyProducts from '../pages/Dashboard/Dashboard/Saller/MyProducts/MyProducts';
 import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
@@ -36,12 +43,44 @@ export const router = createBrowserRouter([
           fetch(`http://localhost:5000/products/${params.category}`),
       },
       {
-        path: "/dashboard",
-        element: <Dashboard />,
-      },
-      {
         path: "*",
         element: <ErrorPage></ErrorPage>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        loader: () => fetch("http://localhost:5000/users"),
+      },
+      {
+        path: "/dashboard/all-sellers",
+        element: <AllSellers></AllSellers>,
+      },
+      {
+        path: "/dashboard/all-buyers",
+        element: <AllBuyers></AllBuyers>,
+      },
+      {
+        path: "/dashboard/my-orders",
+        element: <MyOrders></MyOrders>,
+      },
+      {
+        path: "/dashboard/my-products",
+        element: <MyProducts></MyProducts>,
+      },
+      {
+        path: "/dashboard/add-a-product",
+        element: <AddAProduct></AddAProduct>,
+        loader: () => fetch("http://localhost:5000/categories"),
+      },
+      {
+        path: "/dashboard/my-buyers",
+        element: <MyBuyers></MyBuyers>,
       },
     ],
   },
