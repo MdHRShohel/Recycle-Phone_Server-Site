@@ -71,13 +71,14 @@ const Signup = () => {
                 name="name"
                 placeholder="name"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">User Image</span>
               </label>
-              <input type="file" name="image" />
+              <input type="file" name="image" required/>
             </div>
             <div className="form-control">
               <label className="label">
@@ -88,6 +89,7 @@ const Signup = () => {
                 name="email"
                 placeholder="email"
                 className="input input-bordered"
+                required
               />
             </div>
             <div className="form-control">
@@ -99,6 +101,7 @@ const Signup = () => {
                 name="password"
                 placeholder="password"
                 className="input input-bordered"
+                required
               />
               <div className="form-control">
                 
