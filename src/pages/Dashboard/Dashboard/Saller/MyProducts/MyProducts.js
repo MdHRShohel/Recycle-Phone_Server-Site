@@ -9,7 +9,7 @@ const MyProducts = () => {
     const { user } = useContext(AuthContext);
 
 
-    console.log('email', user?.email)
+    //console.log('email', user?.email)
 
 
     const { data: myProducts = [], refetch } = useQuery({
