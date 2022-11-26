@@ -5,57 +5,104 @@ import { AuthContext } from "../../Context/AuthProvider";
 
 
 const Signup = () => {
-    const navigate = useNavigate();
     const location = useLocation();
-    
-    const {createUser, updateUserProfile, setLoading} = useContext(AuthContext);
-    
-    const from = location.state?.from?.pathname || "/";
-    const [error, setError] = useState("");
+    const from = location.state?.from?.pathname || '/';
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { createUser, setLoading, updateUserProfile } = useContext(AuthContext);
+    const [checked, setChecked] = useState(false);
 
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      const form = event.target;
-      const name = form.name.value;
-      const email = form.email.value;
 
-      const password = form.password.value;
-      const image = form.image.files[0];
+    const handleSubmit = event => {
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const image = form.image.files[0];
+        const check = form.check.checked;
 
-      const formData = new FormData();
-      formData.append("image", image);
 
-      const url =
-        "https://api.imgbb.com/1/upload?key=07b2aef909f6dcfc2a1b777f9afa7bd6";
-      fetch(url, {
-        method: "POST",
-        body: formData,
-      })
-        .then((res) => res.json())
-        .then((imageData) => {
-          createUser(email, password)
-            .then((result) => {
-              //setAuthToken(result.user);
-              setError("");
-              updateUserProfile(name, imageData.data.url)
-                .then(() => {
-                  form.reset();
-                  navigate(from, { replace: true });
-                })
-                .catch((error) => setError(error.message));
-            })
-            .catch((error) => {
-              console.error("create user account error", error);
-              setError(error.message);
-             setLoading(false);
-            });
+        setChecked(current => !current);
+        // console.log(userInfo)
+
+
+        const formData = new FormData()
+        formData.append('image', image)
+
+        const url =
+  "https://api.imgbb.com/1/upload?key=07b2aef909f6dcfc2a1b777f9afa7bd6"
+        fetch(url, {
+            method: 'POST',
+            body: formData,
         })
-        .catch((err) => {
-          toast.error(err.message);
-        });
+            .then(res => res.json())
+            .then(imageData => {
 
-      console.log(name, email, image, password);
-    };
+                if (imageData.success) {
+
+                    const userInfo = {
+                        displayName: name,
+                        photoURL: imageData.data.url,
+                        email,
+                        check
+                    }
+                    console.log(userInfo)
+                    // save doctor information to the database
+
+                    fetch('http://localhost:5000/users', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json',
+                            // authorization: bearer ${localStorage.getItem('accessToken')}
+                        },
+                        body: JSON.stringify(userInfo)
+                    })
+                        .then(res => res.json())
+                        .then(result => {
+                            if (result.acknowledged) {
+                                toast.success(`${name} is Added Successfully`);
+                                navigate('/')
+                            }
+                            console.log(result)
+                        })
+                }
+
+
+
+
+
+                createUser(email, password)
+                    .then(result => {
+                        setError('');
+                        updateUserProfile(name, imageData.data.url)
+                            .then(() => {
+                                form.reset();
+                                navigate(from, { replace: true })
+
+
+
+                            })
+                            .catch(error => setError(error.message))
+                    })
+                    .catch(error => {
+                        console.error('create user account error', error)
+                        setError(error.message);
+                        setLoading(false)
+                    })
+
+            })
+            .catch(err => {
+                toast.error(err.message)
+            })
+
+
+        // console.log(name, check, email, image, password, confirm)
+
+
+
+
+    }
   return (
     <div className=" hero md:py-12">
       <div className="hero-content">
@@ -106,16 +153,12 @@ const Signup = () => {
               <div className="form-control">
                 
               </div>
-              <div className="my-6 form-control">
-                <label className="label cursor-pointer">
-                  <span className="label-text text-lg font-semibold">I want to be a Seller</span>
-                  <input
-                    type="radio"
-                    name="radio-10"
-                    className="radio checked:bg-blue-500"
-                  />
-                </label>
-              </div>
+              <div className="form-control my-5">
+                            <label className="label cursor-pointer justify-start">
+                                <input name='check' type="checkbox" value={checked} className="checkbox" />
+                                <span className="ml-5">Do you want to ReSale your Products?</span>
+                            </label>
+                        </div>
 
               <label className="label">
                 <Link to="/login" className="label-text-alt link link-hover">
