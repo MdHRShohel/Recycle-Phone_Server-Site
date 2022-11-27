@@ -70,14 +70,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal p-0">{menuItems}</ul>
         </div>
         <div className="navbar-end">
-          {user?.uid ? (
-            <h2
-              onClick={handleLogOut}
-              className="btn btn-outline btn-md mx-2 cursor-pointer"
-            >
-              Sign Out
-            </h2>
-          ) : (
+          {!user?.uid ? (
             <>
               <Link to="/login" className="btn btn-primary btn-md mx-2">
                 Sign in
@@ -89,7 +82,14 @@ const Navbar = () => {
                 Sign up
               </Link>
             </>
-          )}
+          ):(
+            <h2
+              onClick={handleLogOut}
+              className="btn btn-outline btn-md mx-2 cursor-pointer"
+            >
+              Sign Out
+            </h2>
+          ) }
         </div>
       </div>
     );

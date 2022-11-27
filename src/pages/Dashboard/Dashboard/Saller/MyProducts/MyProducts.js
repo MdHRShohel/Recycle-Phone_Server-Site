@@ -57,7 +57,7 @@ const MyProducts = () => {
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-10 m-5 md:m-20'>
                             {
                                 myProducts.map(product => <div key={product._id} className="card w-full shadow-xl">
-                                    <figure><img className='w-full h-96' src={product.photo} alt="Products" /></figure>
+                                    <figure><img className='w-1/2' src={product.photo} alt="Products" /></figure>
                                     <div className="card-body">
                                         <h2 className="card-title">{product.name}</h2>
                                         <h2 className='text-xl'>Seller Name: <span className='font-semibold italic text-blue-900'>{product.salerName}</span></h2>

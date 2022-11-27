@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthProvider";
-
 
 const BookModal = ({ mobileData, setMobileData }) => {
   const { user } = useContext(AuthContext);
-  //console.log(mobileData);
+  //console.log(mobileData.photo);
   const {
     register,
     handleSubmit,
@@ -14,21 +13,29 @@ const BookModal = ({ mobileData, setMobileData }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-   // console.log(data);
-   
+    //console.log(data);
+    const userInfo = {
+      address: data.address,
+      email: data.email,
+      mobileName: data.mobileName,
+      name: data.name,
+      number: data.number,
+      photo: mobileData.photo,
+    };
+    //console.log(userInfo);
     fetch("http://localhost:5000/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userInfo),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Your booking successfully Created!");
-          setMobileData(null);
         }
+        setMobileData(null);
       });
   };
 
@@ -39,6 +46,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
       <div className="modal">
         <div className="modal-box relative bg-white">
           <label
+            onClick={() => setMobileData(null)}
             htmlFor="book-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >

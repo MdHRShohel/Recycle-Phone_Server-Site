@@ -20,7 +20,7 @@ const AddAProduct = () => {
         const originalPrice = form.originalPrice.value;
         const category = form.category.value;
         const image = form.image.files[0];
-        const salerName = form.salerName.value;
+        const sellerName = form.sellerName.value;
 
         // console.log(product);
 
@@ -39,7 +39,7 @@ const AddAProduct = () => {
                 if (imageData.success) {
 
                     const product = {
-                      salerName,
+                      sellerName,
                       category,
                       originalPrice,
                       resalePrice,
@@ -164,11 +164,11 @@ const AddAProduct = () => {
                         </div>
 
                         <div className="mt-6 w-full">
-                            <label htmlFor="salerName" className="text-sm font-medium leading-none text-gray-800">
+                            <label htmlFor="sellerName" className="text-sm font-medium leading-none text-gray-800">
                                 {" "}
                                 Your Name{" "}
                             </label>
-                            <input name='salerName' disabled defaultValue={user?.displayName} id="salerName" aria-labelledby="salerName" type="text" className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2 " placeholder="e.g: Md Shijan Ali " required />
+                            <input name='sellerName' disabled defaultValue={user?.displayName} id="sellerName" aria-labelledby="sellerName" type="text" className="bg-gray-200 border rounded text-xs font-medium leading-none placeholder-gray-800 text-gray-800 py-3 w-full pl-3 mt-2 " placeholder="e.g: Md Shijan Ali " required />
                         </div>
 
 

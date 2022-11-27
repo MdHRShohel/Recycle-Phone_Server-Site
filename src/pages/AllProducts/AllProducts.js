@@ -38,7 +38,7 @@ const [mobileData, setMobileData] = useState("");
               Product Used : {product.used}
             </p>
             <p className="text-center font-bold">
-              Seller Name : {product.salerName}
+              Seller Name : {product.sellerName}
             </p>
             <label
               onClick={() => setMobileData(product)}

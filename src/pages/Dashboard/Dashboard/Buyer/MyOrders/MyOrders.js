@@ -53,9 +53,9 @@ const MyOrders = () => {
                       <td>
                         <div className="flex items-center space-x-3">
                           <div className="avatar">
-                            <div className="mask mask-squircle w-12 h-12">
+                            <div className="w-20">
                               <img
-                                src={order?.name}
+                                src={order?.photo}
                                 alt="Avatar Tailwind CSS Component"
                               />
                             </div>
