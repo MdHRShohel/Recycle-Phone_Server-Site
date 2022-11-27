@@ -79,7 +79,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
                 readOnly
                 defaultValue={mobileData.name}
                 className="input italic input-bordered w-full"
-                {...register("carName", { required: true })}
+                {...register("mobileName", { required: true })}
               />
             </div>
             <div className="form-control w-full max-w-xl">
@@ -91,7 +91,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
                 readOnly
                 defaultValue={mobileData.resalePrice}
                 className="input italic input-bordered w-full"
-                {...register("carPrice", { required: true })}
+                {...register("mobilePrice", { required: true })}
               />
             </div>
             <div className="form-control w-full max-w-xl">
