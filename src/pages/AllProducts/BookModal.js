@@ -26,7 +26,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("Your booking successfully!");
+          toast.success("Your booking successfully Created!");
           setMobileData(null);
         }
       });
@@ -37,7 +37,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
       {/* Put this part before </body> tag */}
       <input type="checkbox" id="book-modal" className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box relative">
+        <div className="modal-box relative bg-white">
           <label
             htmlFor="book-modal"
             className="btn btn-sm btn-circle absolute right-2 top-2"
@@ -52,7 +52,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
               <input
                 type="text"
                 readOnly
-                defaultValue={user.displayName}
+                defaultValue={user?.displayName}
                 className="input italic input-bordered w-full "
                 {...register("name", { required: true })}
               />
@@ -65,7 +65,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
               <input
                 type="email"
                 readOnly
-                defaultValue={user.email}
+                defaultValue={user?.email}
                 className="input italic input-bordered w-full "
                 {...register("email", { required: true })}
               />

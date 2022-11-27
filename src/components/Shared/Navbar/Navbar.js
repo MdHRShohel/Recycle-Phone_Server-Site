@@ -7,13 +7,19 @@ const Navbar = () => {
    const menuItems = (
      <>
        <li>
-         <Link to="/" className="text-xl">Home</Link>
+         <Link to="/" className="text-xl">
+           Home
+         </Link>
        </li>
        <li>
-         <Link to="/dashboard" className="text-xl">DashBoard</Link>
+         <Link to="/dashboard" className="text-xl">
+           Dashboard
+         </Link>
        </li>
        <li>
-         <Link to='/blogs' className="text-xl">Blogs</Link>
+         <Link to="/blogs" className="text-xl">
+           Blogs
+         </Link>
        </li>
      </>
    );
@@ -27,7 +33,7 @@ const Navbar = () => {
     } 
 
     return (
-      <div className="navbar bg-blue-200">
+      <div className="navbar">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

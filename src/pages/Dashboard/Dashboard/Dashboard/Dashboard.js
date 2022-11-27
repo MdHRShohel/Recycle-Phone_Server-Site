@@ -14,7 +14,7 @@ const Dashboard = () => {
                     <thead>
                         <tr>
                             <th>
-                                Avater
+                                Avatar
                             </th>
                             <th>Name</th>
                             <th>Role</th>
@@ -30,7 +30,7 @@ const Dashboard = () => {
                                     <div className="flex items-center space-x-3">
                                         <div className="avatar">
                                             <div className="mask mask-circle w-16 h-16">
-                                                <img src={user?.photoURL} alt="Avater" />
+                                                <img src={user?.photoURL} alt="Avatar" />
                                             </div>
                                         </div>
 
@@ -41,7 +41,7 @@ const Dashboard = () => {
                                     <br />
                                     <span className="badge badge-ghost badge-sm">{user?.email}</span>
                                 </td>
-                                <td>{user?.check === true ? 'Saller' : 'Buyer'}</td>
+                                <td>{user?.check === true ? 'Seller' : 'Buyer'}</td>
                                 <th>
                                     <button className="btn btn-error btn-sm">Delete</button>
                                 </th>

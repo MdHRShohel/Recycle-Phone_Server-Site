@@ -11,7 +11,7 @@ const [mobileData, setMobileData] = useState("");
       <h1 className=" my-3 text-center text-4xl font-bold">
         Products on {products[0].category}
       </h1>
-      <div className=" my-12 grid md:grid-cols-3 grid-cols-1 gap-4 mt-6">
+      <div className=" my-12 grid md:grid-cols-3 grid-cols-1 gap-12 mt-6">
         {products.map((product) => (
           <div
             key={product._id}

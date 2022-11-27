@@ -1,25 +1,15 @@
 import React, { useContext } from "react";
-import toast from "react-hot-toast";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+//import toast from "react-hot-toast";
+import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../components/Shared/Navbar/Navbar";
 import { AuthContext } from "../Context/AuthProvider";
 
 
 
 const DashboardLayout = () => {
-  const { logOut, user } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    logOut()
-      .then(() => {
-        console.log("Successfully logout");
-        toast.success("You have logged Out Successfully!!");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("error", error.message);
-      });
-  };
+  const { user } = useContext(AuthContext);
+  //const navigate = useNavigate();
+  
   return (
     <div>
       <Navbar></Navbar>
@@ -29,10 +19,12 @@ const DashboardLayout = () => {
           type="checkbox"
           className="drawer-toggle"
         />
-        <div className="drawer-content  bg-[#F2F2F2]">
+        <div className="drawer-content ">
+          {/* {" "}
+          bg-[#F2F2F2] */}
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side bg-white">
+        <div className="drawer-side">
           <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 
           <div className="avatar items-center justify-center mt-10">
@@ -48,9 +40,10 @@ const DashboardLayout = () => {
 
           <div className="divider"></div>
 
-          <ul className="menu p-4 w-80 text-base-content">
+          <ul className="menu p-4 w-80 lg:mb-80 text-base-content">
+            
             <li>
-              <NavLink to="/dashboard">All Users</NavLink>
+              <NavLink to="/dashboard/all-user">All Users</NavLink>
             </li>
 
             <li>
@@ -73,8 +66,8 @@ const DashboardLayout = () => {
             </li>
           </ul>
 
-          <NavLink className="mx-auto w-5/6" onClick={handleLogout}>
-            <button className="btn btn-primary w-full text-white">
+          <NavLink className="mx-auto w-5/6" >
+            {/* <button className="btn btn-primary w-full text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -90,7 +83,7 @@ const DashboardLayout = () => {
                 />
               </svg>
               Logout
-            </button>
+            </button> */}
           </NavLink>
         </div>
       </div>

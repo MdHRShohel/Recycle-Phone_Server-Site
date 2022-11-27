@@ -4,7 +4,7 @@ import Main from '../Layout/Main';
 import AllProducts from '../pages/AllProducts/AllProducts';
 import Blogs from '../pages/Blogs/Blogs';
 import AllBuyers from '../pages/Dashboard/Dashboard/AllBuyers/AllBuyers';
-import AllSellers from '../pages/Dashboard/Dashboard/AllSallers/AllSellers';
+import AllSellers from '../pages/Dashboard/Dashboard/AllSellers/AllSellers';
 import MyOrders from '../pages/Dashboard/Dashboard/Buyer/MyOrders/MyOrders';
 import Dashboard from '../pages/Dashboard/Dashboard/Dashboard/Dashboard';
 import AddAProduct from '../pages/Dashboard/Dashboard/Saller/AddAProduct/AddAProduct';
@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
     element: <DashboardLayout></DashboardLayout>,
     children: [
       {
-        path: "/dashboard",
+        path: "/dashboard/all-user",
         element: <Dashboard></Dashboard>,
         loader: () => fetch("http://localhost:5000/users"),
       },

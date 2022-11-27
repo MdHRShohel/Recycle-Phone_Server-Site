@@ -17,7 +17,7 @@ const Brands = () => {
     <div className="my-8">
       <h2 className="text-4xl text-center font-bold">Available Brands</h2>
       
-      <div className="grid md:grid-cols-3 grid-cols-1 gap-4 mt-6">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-12 mt-6">
         {categories.map((category) => (
           <div
             key={category._id}

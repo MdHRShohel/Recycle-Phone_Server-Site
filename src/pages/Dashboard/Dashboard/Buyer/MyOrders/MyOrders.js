@@ -1,25 +1,30 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
+import Loading from "../../../../../components/Shared/Loading/Loading";
 import { AuthContext } from "../../../../../Context/AuthProvider";
 
 const MyOrders = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: myOrders = [] } = useQuery({
-    queryKey: ["myOrders"],
+  const { data: myOrders, isLoading } = useQuery({
+    queryKey: ["myOrders", user?.email],
     queryFn: async () => {
       try {
         const res = await fetch(
           `http://localhost:5000/my-orders/${user?.email}`
         );
         const data = await res.json();
-        console.log(data);
+        //console.log(data);
         return data;
       } catch (error) {
         console.log(error);
       }
     },
   });
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <div>
@@ -34,47 +39,44 @@ const MyOrders = () => {
           <table className="table w-full">
             <thead>
               <tr>
-                <th>Avater</th>
-                <th>Seller Name / Location</th>
-                <th>Products Name</th>
+                <th>Product Image</th>
+                <th>Product Title</th>
                 <th>Price</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              {myOrders.map((order) => (
-                <tr key={order._id}>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={order?.photo}
-                            alt="Avatar Tailwind CSS Component"
-                          />
+              {myOrders.map(
+                (order) => (
+                  (
+                    <tr key={order._id}>
+                      <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img
+                                src={order?.name}
+                                alt="Avatar Tailwind CSS Component"
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <div className="font-bold">{order.salerName}</div>
-                      <div className="text-sm opacity-50">{order.location}</div>
-                    </div>
-                  </td>
-                  <td>
-                    {order.productName}
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      Condition: {order?.used} used
-                    </span>
-                  </td>
-                  <td>{order.price} BDT</td>
-                  <th>
-                    <button className="btn bg-green-800 btn-sm">Pay</button>
-                  </th>
-                </tr>
-              ))}
+                      </td>
+                      <td>
+                        <div>
+                          <div className="font-bold">{order.mobileName}</div>
+                          <div className="text-sm opacity-50"></div>
+                        </div>
+                      </td>
+
+                      <td>{order.mobilePrice} BDT</td>
+                      <th>
+                        <button className="btn bg-green-800 btn-sm">Pay</button>
+                      </th>
+                    </tr>
+                  )
+                )
+              )}
             </tbody>
           </table>
         </div>

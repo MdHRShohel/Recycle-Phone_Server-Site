@@ -37,8 +37,29 @@ const Login = () => {
       .then((result) => {
         if (result.user.uid) {
           toast.success("Login Successful");
+          const userInfo = {
+            displayName: result.user.displayName,
+            photoURL: result.user.photoURL,
+            email: result.user.email,
+            check: false,
+          };
+
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              // authorization: bearer ${localStorage.getItem('accessToken')}
+            },
+            body: JSON.stringify(userInfo),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              
+              //console.log(result)
+            });
         }
         setError("");
+        //console.log();
         navigate(from, { replace: true });
       })
       .catch((error) => {
