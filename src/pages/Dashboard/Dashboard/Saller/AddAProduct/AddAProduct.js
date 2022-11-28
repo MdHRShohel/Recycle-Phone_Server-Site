@@ -71,14 +71,7 @@ const AddAProduct = () => {
       });
   };
 
-  if (spinner) {
-    //console.log(spinner);
-    return (
-      <div>
-        <Loading />
-      </div>
-    );
-  }
+  if (spinner) {return <Loading />;}
 
   return (
     <div>

@@ -40,7 +40,7 @@ const DashboardLayout = () => {
 
           <div className="divider"></div>
 
-          <ul className="menu p-4 w-80 lg:mb-80 text-base-content">
+          <ul className="menu p-4 w-72 lg:mb-72 text-base-content gap-2">
             
             <li>
               <NavLink to="/dashboard/all-user">All Users</NavLink>

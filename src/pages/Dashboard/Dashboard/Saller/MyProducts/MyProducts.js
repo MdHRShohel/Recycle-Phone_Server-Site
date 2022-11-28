@@ -70,7 +70,7 @@ const MyProducts = () => {
                     <h2 className="text-xl">
                       Seller Name:{" "}
                       <span className="font-semibold italic text-blue-900">
-                        {product.salerName}
+                        {product.sellerName}
                       </span>
                     </h2>
                     <h2 className="text-xl">

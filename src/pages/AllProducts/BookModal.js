@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/AuthProvider";
 
 const BookModal = ({ mobileData, setMobileData }) => {
   const { user } = useContext(AuthContext);
-  //console.log(mobileData.photo);
+  //console.log(mobileData.resalePrice);
   const {
     register,
     handleSubmit,
@@ -14,13 +14,14 @@ const BookModal = ({ mobileData, setMobileData }) => {
 
   const onSubmit = (data) => {
     //console.log(data);
-    const userInfo = {
+    const bookingInfo = {
       address: data.address,
       email: data.email,
       mobileName: data.mobileName,
       name: data.name,
       number: data.number,
       photo: mobileData.photo,
+      price: mobileData.resalePrice,
     };
     //console.log(userInfo);
     fetch("http://localhost:5000/bookings", {
@@ -28,12 +29,14 @@ const BookModal = ({ mobileData, setMobileData }) => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(bookingInfo),
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Your booking successfully Created!");
+        } else {
+          toast.error(data.message);
         }
         setMobileData(null);
       });
@@ -41,7 +44,6 @@ const BookModal = ({ mobileData, setMobileData }) => {
 
   return (
     <div>
-      {/* Put this part before </body> tag */}
       <input type="checkbox" id="book-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative bg-white">

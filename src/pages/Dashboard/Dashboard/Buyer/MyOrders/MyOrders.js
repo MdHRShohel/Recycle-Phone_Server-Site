@@ -69,7 +69,7 @@ const MyOrders = () => {
                         </div>
                       </td>
 
-                      <td>{order.mobilePrice} BDT</td>
+                      <td>{order.price} BDT</td>
                       <th>
                         <button className="btn bg-green-800 btn-sm">Pay</button>
                       </th>

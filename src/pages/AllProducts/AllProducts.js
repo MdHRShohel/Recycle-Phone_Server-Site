@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 import BookModal from "./BookModal";
 
 const AllProducts = () => {
-  const products = useLoaderData();
+const products = useLoaderData();
 const [mobileData, setMobileData] = useState("");
 
   return (

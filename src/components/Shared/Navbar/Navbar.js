@@ -51,13 +51,15 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menuItems}
-            user?.uid?(
-            <li>
-              <Link to="/dashboard" className="text-xl">
-                Dashboard
-              </Link>
-            </li>
-            )
+            {user?.uid ? (
+              <li>
+                <Link to="/dashboard" className="text-xl">
+                  Dashboard
+                </Link>
+              </li>
+            ) : (
+              <li></li>
+            )}
           </ul>
         </div>
         <Link

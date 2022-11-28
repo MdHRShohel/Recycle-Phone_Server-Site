@@ -32,36 +32,41 @@ const MyBuyers = () => {
           <table className="table w-full">
             <thead>
               <tr>
-                <th>Avater</th>
+                {/* <th>Avatar</th> */}
                 <th>Buyer Name</th>
                 <th>Location</th>
                 <th>Phone Number</th>
               </tr>
             </thead>
             <tbody>
-              {myBuyers.map((order) => (
-                <tr key={order._id}>
-                  <td>
-                    <div className="flex items-center space-x-3">
-                      <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={order?.buyerPhoto}
-                            alt="Avatar Tailwind CSS Component"
-                          />
+              {myBuyers.map(
+                (order) => (
+                  //console.log(order),
+                  (
+                    <tr key={order._id}>
+                      {/* <td>
+                        <div className="flex items-center space-x-3">
+                          <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                              <img
+                                src={order?.photo}
+                                alt="Avatar Tailwind CSS Component"
+                              />
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div>
-                      <div className="font-bold">{order.buyerName}</div>
-                    </div>
-                  </td>
-                  <td>{order.location}</td>
-                  <td>{order.phone}</td>
-                </tr>
-              ))}
+                      </td> */}
+                      <td>
+                        <div>
+                          <div className="font-bold">{order.name}</div>
+                        </div>
+                      </td>
+                      <td>{order.address}</td>
+                      <td>{order.number}</td>
+                    </tr>
+                  )
+                )
+              )}
             </tbody>
           </table>
         </div>
