@@ -7,7 +7,7 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://recycle-phone-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -16,7 +16,7 @@ const Dashboard = () => {
 
   // delete user
   const handleDelete = (user) => {
-    fetch(`http://localhost:5000/users/${user?._id}`, {
+    fetch(`https://recycle-phone-server.vercel.app/users/${user?._id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

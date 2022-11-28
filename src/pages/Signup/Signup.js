@@ -44,7 +44,7 @@ const Signup = () => {
           //console.log(userInfo)
           // save doctor information to the database
 
-          fetch("http://localhost:5000/users", {
+          fetch("https://recycle-phone-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

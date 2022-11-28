@@ -51,7 +51,7 @@ const AddAProduct = () => {
           //console.log(userInfo);
           // save doctor information to the database
 
-          fetch("http://localhost:5000/add-a-product", {
+          fetch("https://recycle-phone-server.vercel.app/add-a-product", {
             method: "POST",
             headers: {
               "content-type": "application/json",

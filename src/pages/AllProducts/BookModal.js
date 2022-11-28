@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthProvider";
 
-const BookModal = ({ mobileData, setMobileData }) => {
+const BookModal = ({ mobileData, setMobileData, advertised,setAdertised }) => {
   const { user } = useContext(AuthContext);
   //console.log(mobileData.resalePrice);
   const {
@@ -24,7 +24,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
       price: mobileData.resalePrice,
     };
     //console.log(userInfo);
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://recycle-phone-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -87,7 +87,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
               <input
                 type="text"
                 readOnly
-                defaultValue={mobileData.name}
+                defaultValue={mobileData?.name}
                 className="input italic input-bordered w-full"
                 {...register("mobileName", { required: true })}
               />
@@ -99,7 +99,7 @@ const BookModal = ({ mobileData, setMobileData }) => {
               <input
                 type="text"
                 readOnly
-                defaultValue={mobileData.resalePrice}
+                defaultValue={mobileData?.resalePrice}
                 className="input italic input-bordered w-full"
                 {...register("mobilePrice", { required: true })}
               />

@@ -5,7 +5,7 @@ const AllBuyers = () => {
   const [buyers, setBuyers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://recycle-phone-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => {
         const showSellers = data.filter((seller) => seller.check === false);
@@ -16,7 +16,7 @@ const AllBuyers = () => {
 
   // delete user
   const handleDelete = (user) => {
-    fetch(`http://localhost:5000/users/${user?._id}`, {
+    fetch(`https://recycle-phone-server.vercel.app/users/${user?._id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",

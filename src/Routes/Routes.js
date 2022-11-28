@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.category}`),
+          fetch(`https://recycle-phone-server.vercel.app/products/${params.category}`),
       },
       {
         path: "*",
@@ -84,7 +84,7 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/add-a-product",
         element: <AddAProduct></AddAProduct>,
-        loader: () => fetch("http://localhost:5000/categories"),
+        loader: () => fetch("https://recycle-phone-server.vercel.app/categories"),
       },
       {
         path: "/dashboard/my-buyers",

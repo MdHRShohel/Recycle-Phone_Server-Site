@@ -11,7 +11,7 @@ const MyOrders = () => {
     queryFn: async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/my-orders/${user?.email}`
+          `https://recycle-phone-server.vercel.app/my-orders/${user?.email}`
         );
         const data = await res.json();
         //console.log(data);

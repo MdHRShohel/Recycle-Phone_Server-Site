@@ -3,13 +3,18 @@ import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Navbar from "../components/Shared/Navbar/Navbar";
 import { AuthContext } from "../Context/AuthProvider";
-
-
+import UseAdmin from "../Hooks/UseAdmin";
+import UseBuyer from "../Hooks/UseBuyer";
+import UseSeller from "../Hooks/UseSeller";
 
 const DashboardLayout = () => {
   const { user } = useContext(AuthContext);
+  const [isAdmin] = UseAdmin(user?.email);
+  const [isSeller] = UseSeller(user?.email);
+  const [isBuyer] = UseBuyer(user?.email);
+  //console.log(isAdmin);
   //const navigate = useNavigate();
-  
+
   return (
     <div>
       <Navbar></Navbar>
@@ -41,32 +46,45 @@ const DashboardLayout = () => {
           <div className="divider"></div>
 
           <ul className="menu p-4 w-72 lg:mb-72 text-base-content gap-2">
-            
-            <li>
-              <NavLink to="/dashboard/all-user">All Users</NavLink>
-            </li>
-
-            <li>
-              <NavLink to="/dashboard/all-sellers">All Sellers</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/all-buyers">All Buyers</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/my-products">My Products</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/my-orders">My Orders</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/add-a-product">Add Product</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/my-buyers">My Buyers</NavLink>
-            </li>
+            {isAdmin && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/all-user">All Users</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/all-sellers">All Sellers</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/all-buyers">All Buyers</NavLink>
+                </li>
+              </>
+            )}
+            {isBuyer && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/my-orders">My Orders</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/my-wishlist">My Wishlist</NavLink>
+                </li>
+              </>
+            )}
+            {isSeller && (
+              <>
+                <li>
+                  <NavLink to="/dashboard/my-products">My Products</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/add-a-product">Add Product</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/dashboard/my-buyers">My Buyers</NavLink>
+                </li>
+              </>
+            )}
           </ul>
 
-          <NavLink className="mx-auto w-5/6" >
+          <NavLink className="mx-auto w-5/6">
             {/* <button className="btn btn-primary w-full text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
