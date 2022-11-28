@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useLoaderData } from "react-router-dom";
+//import { useLoaderData } from "react-router-dom";
 
 const Dashboard = () => {
-  const users = useLoaderData();
+  //const users = useLoaderData();
+  const [users, setUsers] = useState([]);
 
-  // delete product
+  useEffect(() => {
+    fetch("http://localhost:5000/users")
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+      });
+  }, [users]);
 
+  // delete user
   const handleDelete = (user) => {
     fetch(`http://localhost:5000/users/${user?._id}`, {
       method: "DELETE",
@@ -17,7 +25,7 @@ const Dashboard = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("User Deleted Successfully")
+          toast.success("User Deleted Successfully");
         }
       });
   };

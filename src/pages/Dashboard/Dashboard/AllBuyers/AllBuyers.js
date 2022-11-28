@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AllBuyers = () => {
   const [buyers, setBuyers] = useState([]);
+
   useEffect(() => {
     fetch("http://localhost:5000/users")
       .then((res) => res.json())
@@ -10,7 +12,24 @@ const AllBuyers = () => {
         // console.log(showSellers)
         setBuyers(showSellers);
       });
-  }, []);
+  }, [buyers]);
+
+  // delete user
+  const handleDelete = (user) => {
+    fetch(`http://localhost:5000/users/${user?._id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Buyer Deleted Successfully");
+        }
+      });
+  };
+
   return (
     <div>
       <h2 className="text-3xl text-center font-semibold  mt-10">All Buyers</h2>
@@ -46,7 +65,12 @@ const AllBuyers = () => {
                 </td>
                 <td>{user?.check === true ? "Seller" : "Buyer"}</td>
                 <th>
-                  <button className="btn btn-error btn-sm">Delete</button>
+                  <button
+                    onClick={() => handleDelete(user)}
+                    className="btn btn-error btn-sm"
+                  >
+                    Delete
+                  </button>
                 </th>
               </tr>
             ))}

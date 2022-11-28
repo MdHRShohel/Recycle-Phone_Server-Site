@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const AllSellers = () => {
   const [sellers, setSellers] = useState([]);
@@ -6,12 +7,29 @@ const AllSellers = () => {
     fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => {
-        const showSellers = data.filter((saler) => saler.check === true);
+        const showSellers = data.filter((seller) => seller.check === true);
         // console.log(showSellers)
 
         setSellers(showSellers);
       });
-  }, []);
+  }, [sellers]);
+
+  // delete user
+  const handleDelete = (user) => {
+    fetch(`http://localhost:5000/users/${user?._id}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Buyer Deleted Successfully");
+        }
+      });
+  };
+
   return (
     <div>
       <h2 className="text-3xl text-center font-semibold  mt-10">All Sellers</h2>
@@ -20,7 +38,7 @@ const AllSellers = () => {
         <table className="table w-full">
           <thead>
             <tr>
-              <th>Avater</th>
+              <th>Avatar</th>
               <th>Name</th>
               <th>Role</th>
               <th>Action</th>
@@ -33,7 +51,7 @@ const AllSellers = () => {
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-circle w-16 h-16">
-                        <img src={user?.photoURL} alt="Avater" />
+                        <img src={user?.photoURL} alt="Avatar" />
                       </div>
                     </div>
                   </div>
@@ -47,7 +65,12 @@ const AllSellers = () => {
                 </td>
                 <td>{user?.check === true ? "Seller" : "Buyer"}</td>
                 <th>
-                  <button className="btn btn-error btn-sm">Delete</button>
+                  <button
+                    onClick={() => handleDelete(user)}
+                    className="btn btn-error btn-sm"
+                  >
+                    Delete
+                  </button>
                 </th>
               </tr>
             ))}

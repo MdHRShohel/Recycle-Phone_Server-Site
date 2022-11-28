@@ -64,7 +64,6 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/all-user",
         element: <Dashboard></Dashboard>,
-        loader: () => fetch("http://localhost:5000/users"),
       },
       {
         path: "/dashboard/all-sellers",
