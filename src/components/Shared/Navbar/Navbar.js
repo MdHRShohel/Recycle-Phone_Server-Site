@@ -17,6 +17,11 @@ const Navbar = () => {
           Blogs
         </Link>
       </li>
+      <li>
+        <Link to="/about" className="text-xl">
+          About
+        </Link>
+      </li>
     </>
   );
 

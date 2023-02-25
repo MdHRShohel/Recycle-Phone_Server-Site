@@ -7,7 +7,7 @@ const products = useLoaderData();
 const [mobileData, setMobileData] = useState("");
 
   return (
-    <div>
+    <div className="container mx-auto">
       <h1 className=" my-3 text-center text-4xl font-bold">
         Products on {products[0].category}
       </h1>
