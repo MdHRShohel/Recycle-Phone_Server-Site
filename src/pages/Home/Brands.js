@@ -14,7 +14,7 @@ const Brands = () => {
     ,[])
 
   return (
-    <div className="my-8">
+    <div className="my-8 container mx-auto">
       <h2 className="text-4xl text-center font-bold">Available Brands</h2>
       
       <div className="grid md:grid-cols-3 grid-cols-1 gap-12 mt-6">
