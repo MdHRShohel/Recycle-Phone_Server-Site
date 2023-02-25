@@ -1,34 +1,44 @@
-import React from 'react';
-import bannerimg1 from '../../asstes/images/Banner-2.jpg';
+import React from "react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "./HomeComponent.css";
 
+import "swiper/css";
+
+// import required modules
+import { Navigation } from "swiper";
+import { bannerdatas } from "../../data/bannerdata";
 
 const Banner = () => {
-    return (
-      <div className="carousel w-full">
-        <div id="slide1" className="carousel-item relative w-full">
-          <img src={bannerimg1} className="w-full" alt='' />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide4" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide2" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
+  return (
+    <>
+      <Swiper
+        rewind={true}
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper"
+      >
+        <div className="">
+          {bannerdatas.map((bannerdata) => (
+            <>
+              <SwiperSlide className="bannerContainer p-10 lg:p-36 text-white">
+                <div className="shadow-lg p-14 rounded-lg">
+                  <h2 className="text-3xl lg:text-5xl text-center font-bold mb-3">
+                    {" "}
+                    {bannerdata.name}
+                  </h2>
+                  <p className="text-xl lg:w-[600px] block mx-auto text-justify">
+                    {bannerdata.details}
+                  </p>
+                </div>
+              </SwiperSlide>
+            </>
+          ))}
         </div>
-        <div id="slide2" className="carousel-item relative w-full">
-          <img src={bannerimg1}className="w-full" alt='' />
-          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-            <a href="#slide1" className="btn btn-circle">
-              ❮
-            </a>
-            <a href="#slide3" className="btn btn-circle">
-              ❯
-            </a>
-          </div>
-        </div>
-      </div>
-    );
+      </Swiper>
+    </>
+  );
 };
 
 export default Banner;
