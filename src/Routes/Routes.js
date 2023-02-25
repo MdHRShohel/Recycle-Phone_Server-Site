@@ -14,7 +14,7 @@ import ErrorPage from '../pages/ErrorPage/ErrorPage';
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Signup from '../pages/Signup/Signup';
-import PrivateRoutes from './PrivateRoutes';
+
 
 export const router = createBrowserRouter([
   {
@@ -40,9 +40,9 @@ export const router = createBrowserRouter([
       {
         path: "/products/:category",
         element: (
-          <PrivateRoutes>
+          
             <AllProducts />
-          </PrivateRoutes>
+          
         ),
         loader: ({ params }) =>
           fetch(`https://recycle-phone-server.vercel.app/products/${params.category}`),
@@ -56,9 +56,9 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <PrivateRoutes>
+      
         <DashboardLayout></DashboardLayout>
-      </PrivateRoutes>
+     
     ),
     children: [
       {
